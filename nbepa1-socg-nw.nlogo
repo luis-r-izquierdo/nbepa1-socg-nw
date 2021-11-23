@@ -281,7 +281,7 @@ end
 GRAPHICS-WINDOW
 764
 158
-1110
+1191
 505
 -1
 -1
@@ -295,8 +295,8 @@ GRAPHICS-WINDOW
 0
 0
 1
--16
-16
+-20
+20
 -16
 16
 0
@@ -413,8 +413,8 @@ CHOOSER
 224
 updating
 updating
-"synchronous" "asynch random independent" "asynch random order"
-1
+"asynch random independent" "asynch random order" "synchronous"
+0
 
 INPUTBOX
 23
