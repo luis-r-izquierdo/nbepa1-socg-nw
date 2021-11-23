@@ -1,0 +1,293 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<head>
+
+   <TITLE>nBEPA1 in Single-optimum Coordination Games, played in networks</TITLE>
+
+   <META http-equiv=Content-Type content="text/html; charset=windows-1252"></META>
+
+   <META name=keywords content="nBEPA1, Single-optimum Coordination Games, best experienced payoff, networks, evolutionary, game theory, NetLogo, agent-based modeling"></META>
+
+   <META name=Description content="NetLogo model designed to analyze the nBEPA1 (noisy Best Experienced Payoff, test All, 1 trial) protocol in Single Optimum Coordination Games played in networks"></META>
+
+   <META name=Authors content="Luis R. Izquierdo, Segismundo S. Izquierdo"></META>
+
+   <STYLE type="text/css">
+      H1 {
+         BACKGROUND-COLOR: #111199;
+         color: #ffffff;
+         font-family: Verdana;
+         padding: 5px;
+      }
+
+   </STYLE>
+   <STYLE type="text/css">
+      H2 {
+         BACKGROUND-COLOR: #66ccff;
+         font-family: arial;
+         padding: 4px;
+      }
+
+   </STYLE>
+   <STYLE type="text/css">
+      H3 {
+         BACKGROUND-COLOR: #cccccc;
+         font-family: verdana;
+         font-weight: bold;
+         padding: 4px;
+      }
+
+   </STYLE>
+   <STYLE type="text/css">
+      p {
+         font-family: Verdana
+      }
+
+   </STYLE>
+   <STYLE type="text/css">
+      table {
+         font-family: Verdana
+      }
+
+   </STYLE>
+   <STYLE type="text/css">
+      ul {
+         padding-top: 0px;
+         padding-bottom: 6px;
+         font-family: Verdana
+      }
+
+   </STYLE>
+   <STYLE type="text/css">
+      ol {
+         padding-top: 2px;
+         padding-bottom: 6px;
+         font-family: Verdana
+      }
+
+   </STYLE>
+   <STYLE type="text/css">
+      li {
+         padding-top: 2px;
+         padding-bottom: 2px;
+      }
+
+   </STYLE>
+   <STYLE type="text/css">
+      i.parameter {
+         font-family: arial;
+         color: red;
+         font-weight: bold
+      }
+
+   </STYLE>
+   <STYLE type="text/css">
+      i.button {
+         font-family: arial;
+         color: blue;
+         font-weight: bold
+      }
+
+   </STYLE>
+   <STYLE type="text/css">
+      i.value {
+         font-family: arial;
+         color: #444444;
+         font-weight: bold
+      }
+
+   </STYLE>
+   <STYLE type="text/css">
+      i.slider {
+         font-family: arial;
+         color: green;
+         font-weight: bold
+      }
+
+   </STYLE>
+   <STYLE type="text/css">
+      i.monitor {
+         font-family: arial;
+         color: #B8860B;
+         font-weight: bold
+      }
+
+   </STYLE>
+   <STYLE type="text/css">
+      i.plot {
+         font-family: arial;
+         color: brown;
+         font-weight: bold
+      }
+
+   </STYLE>
+   <STYLE type="text/css">
+      img {
+         max-width: 100%;
+         height: auto;
+         width: auto\9;
+         /* ie8 */
+      }
+
+   </STYLE>
+
+   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
+   <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+
+   <H1>nBEPA1 in Single-optimum Coordination Games played in networks</H1>
+   <h3>Luis R. Izquierdo &amp; Segismundo S. Izquierdo</h3>
+
+   <H2>HOW TO INSTALL THE MODEL</H2>
+
+   <p>To use <b>nBEPA1-SOCG-nw</b> (protocol <b>n</b>oisy <b>B</b>est <b>E</b>xperienced <b>P</b>ayoff, test <b>A</b>ll, <b>1</b> trial, in <b>S</b>ingle <b>O</b>ptimum <b>C</b>oordination <b>G</b>ames played in <b>n</b>et<b>w</b>orks), you will have to install <a target="_blank" href="http://ccl.northwestern.edu/netlogo/">NetLogo 6.2.1 (free and open source)</a> and download <a href="nbepa1-socg-nw.nlogo.zip">the model itself</a>. Unzip the downloaded file and click on nbepa1-socg-nw.nlogo</p>
+
+   <H2>DESCRIPTION OF THE MODEL</H2>
+
+   <p>This section explains the formal model that <b>nBEPA1-SOCG-nw</b> implements. The information provided here should suffice to re-implement the same formal model in any sophisticated enough modelling platform. We use bold green italicised arial font to denote <i class="slider">parameters</i> (i.e. variables that can be set by the user). </p>
+
+   <h3>Population</h3>
+   <p>In the model, there is a population of <span class="math inline">\(N\)</span> agents who are embedded in an undirected network and repeatedly play a Single-Optimum Coordination Game with their neighbors. The type of network is determined by the user setting the parameter <i class="slider">network-model</i>, which can have the following values: <i class="value">Erdos-Reny</i>, <i class="value">small-world</i>, <i class="value">preferential-attachment</i>, <i class="value">ring</i>, <i class="value">star</i>, or <i class="value">grid-4-nbrs</i>.</p>
+
+   <h3>The Game</h3>
+   <p>The Single-Optimum Coordination Game is a 2-player <span class="math inline">\(n\)</span>-strategy game with the following payoff matrix:
+      <span class="math display">\[
+            \left(\begin{array}{ccccc}
+	1&amp;0&amp;0&amp;...&amp;0\\
+	0&amp;2&amp;0&amp;...&amp;0\\
+	0&amp;0&amp;\ddots&amp;&amp;\vdots\\
+	\vdots&amp;\vdots&amp;&amp;n-1&amp;0\\
+	0&amp;0&amp;...&amp;0&amp;n\\
+\end{array}
+\right)
+     \]</span>
+   </p>
+
+   <p>Note that the optimal outcome is achieved if both players choose strategy <span class="math inline">\(n\)</span>.</p>
+
+   <h3>The nBEPA1 revision protocol</h3>
+
+   <p>From time to time, agents are given the opportunity to revise their strategy, and they do so following the nBEPA1 revision protocol: </p>
+   <ul>
+      <li>With probability <i class="slider">noise</i>, the revising agent chooses one of the <span class="math inline">\(n\)</span> strategies at random.</li>
+      <li>With probability (1-<i class="slider">noise</i>), the revising agent tests each of the <span class="math inline">\(n\)</span> strategies, by playing each of them once with a neighbor in the network. Crucially, the revising agent tries each one of its strategies against a randomly drawn neighbor; thus, each trial is conducted with a potentially different neighbor. Once each of the <span class="math inline">\(n\)</span> strategies has been tried against one (potentially different) neighbor, the revising agent chooses the strategy that provided the greatest payoff in the test, resolving the possible ties at random.</li>
+   </ul>
+
+
+   <h3>Sequence of events</h3>
+
+   <p>Initially, agents are randomly assigned a strategy according to the initial distribution <i class="slider">n-of-players-for-each-strategy</i> = <span class="math inline">\(\left[a_1, a_2, ..., a_n\right]\)</span> set by the user, where <span class="math inline">\(a_i\)</span> denotes the number of agents using strategy <span class="math inline">\(i\)</span>. The population size <span class="math inline">\(N\)</span> and the number of strategies <span class="math inline">\(n\)</span> in the game are computed from the initial distribution, since <span class="math inline">\(N = \sum_i a_i\)</span> and <span class="math inline">\(n\)</span> is the number of elements in the initial distribution.
+   </p>
+
+   <p>The model then runs in discrete time-steps called ticks. Within each tick, agents are given the opportunity to revise their strategies. The way agents are scheduled to revise their strategies is specified by the user with parameter <i class="slider">updating</i>, which can take three values: </p>
+
+   <ul>
+      <li><i class="value">Asynchronous random independent</i>. In every tick, we repeat the following procedure as many times as agents there are: "Take one agent at random and give it the opportunity to revise its strategy."</li>
+
+      <li><i class="value">Asynchronous random order</i>. In every tick, we give all agents the opportunity to revise their strategy sequentially in a random order.</li>
+
+      <li><i class="value">Synchronous</i>. In every tick, all agents revise their strategy at the same time (i.e. synchronously).</li>
+   </ul>
+   <p>
+      Note that, in every tick, exactly <span class="math inline">\(N\)</span> revisions take place regardless of the value of <i class="slider">updating</i>. This sequence of events is repeated iteratively.
+   </p>
+
+   <h2>HOW TO USE IT</h2>
+
+   <img style="margin:0px auto;display:block" src="./nbepa1-socg-nw-interface.png" />
+
+   <h3>Parameters</h3>
+
+   <ul>
+      <li><i class="slider">n-of-players-for-each-strategy</i>: List of the form <span class="math inline">\(\left[a_1, a_2, ..., a_n\right]\)</span>, where <span class="math inline">\(a_i\)</span> denotes the initial number of agents using strategy <span class="math inline">\(i\)</span>.</li>
+      <li><i class="slider">updating</i>: Updating scheme used to conduct the revisions. It can take the following three values:
+         <ul>
+            <li><i class="value">Asynchronous random independent</i></li>
+
+            <li><i class="value">Asynchronous random order</i></li>
+
+            <li><i class="value">Synchronous</i></li>
+         </ul>
+
+         The value of this parameter can be changed at runtime, with immediate effect on the run.</li>
+      <li><i class="slider">noise</i>: Probability of experimentation, i.e. probability with which a revising agent adopts a random strategy. The value of this parameter can be changed at runtime, with immediate effect on the run.</li>
+   </ul>
+
+   <ul>
+      <li><i class="slider">network-model</i>: Algorithm used to build the network. It can take the following six values:
+         <ul>
+            <li><i class="value">Erdos-Reny</i>. The network is a random network of <span class="math inline">\(N\)</span> agents in which each possible (undirected) link is created with probability <i class="slider">prob-link</i>, independently from every other link. The algorithm used is the <span class="math inline">\(G(n,p)\)</span> variant of the <a href="https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93R%C3%A9nyi_model">Erd&odblac;s-R&eacute;nyi model</a>.</li>
+
+            <li><i class="value">small-world</i>. The network is a <a href="https://en.wikipedia.org/wiki/Watts%E2%80%93Strogatz_model">Watts-Strogatz small-world network</a>, with average degree set with parameter <i class="slider">avg-degree-small-world</i> and rewiring probability set with parameter <i class="slider">prob-rewiring</i>.</li>
+
+            <li><i class="value">preferential-attachment</i>. The network is generated using the <a href="https://en.wikipedia.org/wiki/Barab%C3%A1si%E2%80%93Albert_model">Barab&aacute;si-Albert model</a>, with minimum degree 1. </li>
+
+            <li><i class="value">ring</i>. The network is a <a href="https://en.wikipedia.org/wiki/Ring_network">ring network</a> of <span class="math inline">\(N\)</span> agents, in which each agent is connected to exactly two other agents.</li>
+
+            <li><i class="value">star</i>. The network is a <a href="https://en.wikipedia.org/wiki/Star_(graph_theory)">star network</a> in which there is one central agent and every other agent is connected only to the central agent.</li>
+
+            <li><i class="value">grid-4-nbrs</i>. Initially, the created network is a <a href="https://en.wikipedia.org/wiki/Lattice_graph">2D lattice network</a> (i.e., a grid) with <span class="math inline">\(\lceil\sqrt{N}\rceil\)</span> rows and <span class="math inline">\(\lceil\sqrt{N}\rceil\)</span> columns, and then the <span class="math inline">\(\left(\lceil\sqrt{N}\rceil\right)^2-N\)</span> extra agents are randomly removed from the network.</li>
+         </ul>
+
+      </li>
+      <li><i class="slider">noise</i>: Probability of experimentation, i.e. probability with which a revising agent adopts a random strategy. The value of this parameter can be changed at runtime, with immediate effect on the run.</li>
+   </ul>
+
+
+
+   <h3>Buttons</h3>
+
+   <ul>
+      <li><i class="button">setup</i>: Sets the model up, creating a population of agents with initial strategies determined by parameter <i class="slider">n-of-players-for-each-strategy</i>.</li>
+      <li><i class="button">go once</i>: Pressing this button will run the model one tick only.</li>
+      <li><i class="button">go</i>: Pressing this button will run the model until this same button is pressed again. </li>
+   </ul>
+
+   <ul>
+      <li><i class="button">relax-network</i>: Pressing this button will repeatedly apply a spring layout algorithm on the network, as if the agents were repelling each other and the links were springs. To stop the algorithm, press the button again. The effect is just visual and has no impact on the dynamics.</li>
+      <li><i class="button">drag-and-drop</i>: With this button pressed, you can drag and drop any player in the network with the mouse. The effect is just visual and has no impact on the dynamics. To deactivate this functionality, press the button again.</li>
+   </ul>
+
+   <h2>MONITORS, TEXT BOX, PLOT AND VIEW</h2>
+
+   <ul>
+      <li><i class="monitor">ticks</i>: Number of ticks that have gone by.</li>
+      <li><i class="monitor">n-of-links</i>: Number of links in the network.</li>
+      <li><i class="monitor">avg degree</i>: Average degree in the network.</li>
+      <li><i class="plot">Payoff matrix</i>: Text box showing the payoff matrix of the single-optimum coordination game being played. The game has as many strategies as elements there are in <i class="slider">n-of-players-for-each-strategy</i>.</li>
+      <li><i class="plot">Strategy distribution</i>: Time series of the distribution of strategies in the population.</li>
+      <li><i class="plot">View</i>: This is the black rectangle at the bottom right. It shows each player as a circle, colored according to its current strategy. Two players are neighbors if and only if there is a link that connects them.</li>
+   </ul>
+
+   <H2>LICENCE</H2>
+   <p><b>nbepa1-socg-nw</b> is a NetLogo model designed to analyze the nBEPA1 (noisy Best Experienced Payoff, test All, 1 trial) protocol in Single Optimum Coordination Games played in networks.
+      <br>Copyright (C) 2021 <a target="_blank" href="http://luis.izqui.org">Luis R. Izquierdo</a> &amp; <a target="_blank" href="http://segis.izqui.org">Segismundo S. Izquierdo</a></p>
+
+   <p>This program is free software; you can redistribute it and/or modify it under the terms of the <a target="_blank" href="http://www.gnu.org/copyleft/gpl.html">GNU General Public License</a> as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.</p>
+   <p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the <a target="_blank" href="http://www.gnu.org/copyleft/gpl.html">GNU General Public License</a> for more details.</p>
+   <p>You can download a copy of the <a target="_blank" href="http://www.gnu.org/copyleft/gpl.html">GNU General Public License</a> by clicking <a target="_blank" href="./LICENSE">here</a>; you can also get a printed copy writing to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.</p>
+   <p>Contact information:
+      <br>Luis R. Izquierdo
+      <br> University of Burgos, Spain.
+      <br> e-mail: <a href="mailto:lrizquierdo@ubu.es">lrizquierdo@ubu.es</a>
+   </p>
+
+
+   <H2>MODELLERS</H2>
+   <p>This program has been designed and implemented by <a target="_blank" href="http://luis.izqui.org">Luis R. Izquierdo</a> &amp; <a target="_blank" href="http://segis.izqui.org">Segismundo S. Izquierdo</a>.</p>
+
+   <H2>REFERENCES</H2>
+
+   <p>Izquierdo, L. R., Izquierdo, S. S. and Rodr&iacute;guez, J. (2021). Decentralized, Fast and Scalable Almost-Global Convergence in Single-Optimum Coordination Problems. <em>Working paper</em>.</p>
+
+   <hr>
+
+</body>
+
+</html>
